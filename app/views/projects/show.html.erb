@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <% if @project.tasks.empty? %>
+    <%= "There are no tasks" %>
+  <% else %>
+    <% @project.tasks.each do |task|%>
+    <%= task.description %>
+  <% end %>
+  <% end %>
+</p>
+
+<p>
+  <a href="/projects/<%= @project.id %>/tasks/new">Add Task</a>
+
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
