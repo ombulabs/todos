@@ -7,11 +7,11 @@
 
 <p>
   <% if @project.tasks.empty? %>
-    <%= "There are no tasks" %>
+    There are no tasks
   <% else %>
     <% @project.tasks.each do |task|%>
-    <%= task.description %>
-  <% end %>
+      <%= task.description %>
+    <% end %>
   <% end %>
 </p>
 
