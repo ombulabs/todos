@@ -9,9 +9,23 @@
   <% if @project.tasks.empty? %>
     There are no tasks
   <% else %>
-    <% @project.tasks.each do |task|%>
-      <%= task.description %>
-    <% end %>
+    <ul><% @project.tasks.each do |task|%>
+        <li> <%= task.description  %>
+          <% if task.is_completed? %>
+            Completed
+          <% else %>
+            <%= form_for task, url: "/projects/#{@project.id}/tasks/#{task.id}" do |f| %>
+              <%= f.hidden_field :completed_at, :value => Time.now %>
+              <%= f.submit "Mark as complete" %>
+            <% end %>
+          <% end %>
+
+          <%= link_to 'Destroy', "/projects/#{@project.id}/tasks/#{task.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 </p>
 
